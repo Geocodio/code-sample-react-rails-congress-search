@@ -1,5 +1,5 @@
 require 'dotenv-rails'
-require 'geocodio'
+require 'geocodio/gem'
 
 class DistrictsController < ApplicationController
     def get_districts
