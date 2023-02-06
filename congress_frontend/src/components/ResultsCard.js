@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import RepresentativeCard from './RepresentativeCard.js';
 
 const ResultsCard = ({ district }) => {
-    
-    const repsCards = district[0].current_legislators.length > 0 ? 
-        district[0].current_legislators.map(rep => <RepresentativeCard key={rep.govtrack_id} rep={rep} />) : <div />
+    const repsCards = district.current_legislators.length > 0 ? 
+        district.current_legislators.map(rep => <RepresentativeCard key={rep.references.govtrack_id} rep={rep} />) : <div />
     
     return(
         <div className="results">
             <div className="row">
                 <div className="district-name">
-                    <h3>{district[0].name}</h3>
+                    <h3>{district.name}</h3>
                 </div>
                 { repsCards }
             </div>

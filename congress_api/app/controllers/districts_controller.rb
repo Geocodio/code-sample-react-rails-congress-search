@@ -1,13 +1,13 @@
 require 'dotenv-rails'
-require 'geocodio'
+require 'geocodio/gem'
 
 class DistrictsController < ApplicationController
     def get_districts
         addressString = params["search"]
-        geocodio = Geocodio::Client.new(ENV["API_KEY"])
-        location = geocodio.geocode([addressString], fields: %w[cd]).best
-        district = location.congressional_districts
-
+        geocodio = Geocodio::Gem.new(ENV["API_KEY"])
+        location = geocodio.geocode([addressString], ["cd"])
+        district = location["results"][0]["fields"]["congressional_districts"][0]
+        
         render json: district
     end
 end
